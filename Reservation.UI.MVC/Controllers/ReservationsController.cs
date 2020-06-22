@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Reservation.DATA.EF;
+using Reservation.UI.MVC.Models;
 
 namespace Reservation.UI.MVC.Controllers
 {
@@ -15,6 +16,7 @@ namespace Reservation.UI.MVC.Controllers
         private ReservationEntities db = new ReservationEntities();
 
         // GET: Reservations
+        [Authorize(Roles = "Employee, Admin")]
         public ActionResult Index()
         {
             var reservations = db.Reservations.Include(r => r.Location).Include(r => r.OwnerAsset);
@@ -22,13 +24,14 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: Reservations/Details/5
+        [Authorize(Roles = "Employee, Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
+            Reservation.DATA.EF.Reservation reservation = db.Reservations.Find(id);
             if (reservation == null)
             {
                 return HttpNotFound();
@@ -37,6 +40,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: Reservations/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName");
@@ -49,7 +53,7 @@ namespace Reservation.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ReservationId,OwnerAssetId,LocationId,ReservationDate")] Reservation reservation)
+        public ActionResult Create([Bind(Include = "ReservationId,OwnerAssetId,LocationId,ReservationDate")] Reservation.DATA.EF.Reservation reservation)
         {
             if (ModelState.IsValid)
             {
@@ -64,13 +68,14 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: Reservations/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
+            Reservation.DATA.EF.Reservation reservation = db.Reservations.Find(id);
             if (reservation == null)
             {
                 return HttpNotFound();
@@ -85,7 +90,7 @@ namespace Reservation.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReservationId,OwnerAssetId,LocationId,ReservationDate")] Reservation reservation)
+        public ActionResult Edit([Bind(Include = "ReservationId,OwnerAssetId,LocationId,ReservationDate")] Reservation.DATA.EF.Reservation reservation)
         {
             if (ModelState.IsValid)
             {
@@ -99,13 +104,14 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: Reservations/Delete/5
+        [Authorize(Roles = "Employee, Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
+            Reservation.DATA.EF.Reservation reservation = db.Reservations.Find(id);
             if (reservation == null)
             {
                 return HttpNotFound();
@@ -118,7 +124,7 @@ namespace Reservation.UI.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Reservation reservation = db.Reservations.Find(id);
+            Reservation.DATA.EF.Reservation reservation = db.Reservations.Find(id);
             db.Reservations.Remove(reservation);
             db.SaveChanges();
             return RedirectToAction("Index");

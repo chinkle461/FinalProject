@@ -15,12 +15,14 @@ namespace Reservation.UI.MVC.Controllers
         private ReservationEntities db = new ReservationEntities();
 
         // GET: Locations
+        [Authorize(Roles = "Employee, Admin")]
         public ActionResult Index()
         {
             return View(db.Locations.ToList());
         }
 
         // GET: Locations/Details/5
+        [Authorize(Roles = "Employee, Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: Locations/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +62,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: Locations/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +94,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: Locations/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

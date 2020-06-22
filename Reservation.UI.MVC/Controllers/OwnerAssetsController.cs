@@ -16,6 +16,7 @@ namespace Reservation.UI.MVC.Controllers
         private ReservationEntities db = new ReservationEntities();
 
         // GET: OwnerAssets
+        [Authorize(Roles = "Employee, Admin")]
         public ActionResult Index()
         {
             var ownerAssets = db.OwnerAssets.Include(o => o.UserDetail);
@@ -23,6 +24,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: OwnerAssets/Details/5
+        [Authorize(Roles = "Employee, Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,6 +40,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: OwnerAssets/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FirstName");
@@ -49,10 +52,39 @@ namespace Reservation.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OwnerAssetId,AssetName,OwnerId,AssetPhoto,SpecialNotes,IsActive,DateAdded,Relationship")] OwnerAsset ownerAsset)
+        public ActionResult Create([Bind(Include = "OwnerAssetId,AssetName,OwnerId,AssetPhoto,SpecialNotes,IsActive,DateAdded,Relationship")] OwnerAsset ownerAsset, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+                string imageName = "noImage.png";
+
+                if (image != null)
+                {
+
+                    //get the file name for image 
+                    imageName = image.FileName;
+
+                    string ext = imageName.Substring(imageName.LastIndexOf('.'));
+
+                    //create a list of valid extensions
+                    string[] goodExts = { ".jpg", ".jpeg", ".png", ".gif" };
+
+                    if (goodExts.Contains(ext.ToLower()) && image.ContentLength <= 4194304)
+                    {
+                        imageName = Guid.NewGuid() + ext;
+
+                        image.SaveAs(Server.MapPath("~/Content/images" + imageName));
+                    }
+
+                    else
+                    {
+                        imageName = "noImage.png";
+                    }
+                    ownerAsset.AssetPhoto = imageName;
+                }
+                #endregion
+
                 db.OwnerAssets.Add(ownerAsset);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -63,6 +95,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: OwnerAssets/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,10 +116,38 @@ namespace Reservation.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OwnerAssetId,AssetName,OwnerId,AssetPhoto,SpecialNotes,IsActive,DateAdded,Relationship")] OwnerAsset ownerAsset)
+        public ActionResult Edit([Bind(Include = "OwnerAssetId,AssetName,OwnerId,AssetPhoto,SpecialNotes,IsActive,DateAdded,Relationship")] OwnerAsset ownerAsset, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+                string imageName = ownerAsset.AssetPhoto;
+
+                if (image != null)
+                {
+
+                    //get the file name for image 
+                    imageName = image.FileName;
+
+                    string ext = imageName.Substring(imageName.LastIndexOf('.'));
+
+                    //create a list of valid extensions
+                    string[] goodExts = { ".jpg", ".jpeg", ".png", ".gif" };
+
+                    if (goodExts.Contains(ext.ToLower()) && image.ContentLength <= 4194304)
+                    {
+                        imageName = Guid.NewGuid() + ext;
+
+                        image.SaveAs(Server.MapPath("~/Content/images/" + imageName));
+                    }
+
+                    else
+                    {
+                        imageName = "noImage.png";
+                    }
+                    ownerAsset.AssetPhoto = imageName;
+                }
+                #endregion
                 db.Entry(ownerAsset).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -96,6 +157,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: OwnerAssets/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

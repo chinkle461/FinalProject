@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Reservation.DATA.EF;
 
 namespace Reservation.UI.MVC.Controllers
 {
@@ -153,6 +154,24 @@ namespace Reservation.UI.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    #region Create the User Details object EVERY TIME a new user registers
+                    UserDetail newUserDetails = new UserDetail()
+                    {
+                        UserId = user.Id,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                    };
+                    ReservationEntities db = new ReservationEntities();
+                    db.UserDetails.Add(newUserDetails);
+                    db.SaveChanges();
+                    #endregion
+
+                    #region Add the new user to a role
+                    UserManager.AddToRole(user.Id, "Customer");
+                    #endregion
+
+
+
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");

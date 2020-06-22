@@ -64,6 +64,19 @@ namespace Reservation.UI.MVC.Models
 
     public class RegisterViewModel
     {
+        #region Custom User Details Addition
+        //Custom View Model Information for User Details
+        [Required(ErrorMessage = "*** First Name is required ***")]
+        [StringLength(50, ErrorMessage = "*** Max 50 characters ***")]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "*** Last Name is required ***")]
+        [StringLength(50, ErrorMessage = "*** Max 50 characters ***")]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+        #endregion
+               
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
