@@ -35,7 +35,6 @@ namespace Reservation.DATA.EF//.MetadataFolder
         public string ZipCode { get; set; }
 
         [Required(ErrorMessage = "*** Reservations allowed is required ***")]
-        [StringLength(50, ErrorMessage = "*** Max 50 characters ***")]
         public byte ReservationLimit { get; set; }
     }
     [MetadataType(typeof(LocationMetadata))]

@@ -14,6 +14,11 @@ namespace Reservation.UI.MVC.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Contact()
+        {
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]

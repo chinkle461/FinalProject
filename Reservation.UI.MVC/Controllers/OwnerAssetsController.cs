@@ -90,7 +90,7 @@ namespace Reservation.UI.MVC.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FirstName", ownerAsset.OwnerId);
+            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FullName", ownerAsset.OwnerId);
             return View(ownerAsset);
         }
 
@@ -107,7 +107,7 @@ namespace Reservation.UI.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FirstName", ownerAsset.OwnerId);
+            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FullName", ownerAsset.OwnerId);
             return View(ownerAsset);
         }
 
@@ -152,7 +152,7 @@ namespace Reservation.UI.MVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FirstName", ownerAsset.OwnerId);
+            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FullName", ownerAsset.OwnerId);
             return View(ownerAsset);
         }
 

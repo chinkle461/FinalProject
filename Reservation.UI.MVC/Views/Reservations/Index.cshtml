@@ -10,36 +10,46 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ReservationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location.LocationName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OwnerAsset.AssetName)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReservationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location.LocationName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OwnerAsset.AssetName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ReservationId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ReservationId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ReservationId })
-        </td>
-    </tr>
-}
-
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReservationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location.LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OwnerAsset.AssetName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReservationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OwnerAsset.AssetName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ReservationId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ReservationId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ReservationId })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+@section scripts{
+    <script>
+            $(document).ready(function () {
+                $('.table').DataTable(); //the default is #myTable
+            });
+    </script>
+}

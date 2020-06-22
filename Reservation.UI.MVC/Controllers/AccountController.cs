@@ -167,16 +167,10 @@ namespace Reservation.UI.MVC.Controllers
                     #endregion
 
                     #region Add the new user to a role
-                    UserManager.AddToRole(user.Id, "Customer");
+                    UserManager.AddToRole(user.Id, "User");
                     #endregion
 
-
-
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
-                    return View("DisplayEmail");
+                    return View("Login");
                 }
                 AddErrors(result);
             }
