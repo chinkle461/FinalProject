@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Reservation.DATA.EF;
 
 namespace Reservation.UI.MVC.Controllers
 {
@@ -227,6 +228,14 @@ namespace Reservation.UI.MVC.Controllers
                 {
                     return HttpNotFound();
                 }
+
+                #region 
+                ReservationEntities db = new ReservationEntities();
+                var ud = db.UserDetails.Where(x => x.UserId == user.Id).FirstOrDefault();
+                db.UserDetails.Remove(ud);
+                db.SaveChanges();
+                #endregion
+
                 var result = await UserManager.DeleteAsync(user);
                 if (!result.Succeeded)
                 {

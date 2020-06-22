@@ -1,4 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Net;
+using System.Net.Mail;
+using System.Web.Mvc;
+using Reservation.UI.MVC.Models;
 
 namespace Reservation.UI.MVC.Controllers
 {
@@ -10,21 +14,37 @@ namespace Reservation.UI.MVC.Controllers
             return View();
         }
 
-        [HttpGet]
-        [Authorize]
-        public ActionResult About()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Contact(ContactViewModel cvm)
         {
-            ViewBag.Message = "Your app description page.";
+            if (!ModelState.IsValid)
+            {
+                return View(cvm);
+            }
+            #region Send Email Functionality
+            string message = $"You have received an email from {cvm.Name} with the subject {cvm.Subject}. Please respond to {cvm.Email} with your response to the following message: <br><cite>{cvm.Message}</cite>";
 
-            return View();
-        }
+            MailMessage msg = new MailMessage("admin@christopherahinkle.com", "christopherahinkle@outlook.com", cvm.Subject, message);
+            msg.IsBodyHtml = true;
 
-        [HttpGet]
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            SmtpClient client = new SmtpClient("mail.christopherahinkle.com");
+            client.Credentials = new NetworkCredential("admin@christopherahinkle.com", "Tyson120!");
 
-            return View();
+            try
+            {
+                client.Send(msg);
+            }
+            catch (Exception ex)
+            {
+
+                ViewBag.ErrorMessage = $"Sorry, something went wrong. Please try again later or review the stacktrace <br>{ex.StackTrace}";
+                return View(cvm);
+            }
+
+            return View("EmailConfirmation", cvm);
+            #endregion
         }
     }
 }

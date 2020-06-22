@@ -89,7 +89,7 @@ namespace Reservation.DATA.EF//.MetadataFolder
         [Display(Name = "Is Active")]
         public bool IsActive { get; set; }
 
-        [Display(Name = "Reservation Date")]
+        [Display(Name = " Date Reserved ")]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public System.DateTime DateAdded { get; set; }
         public string Relationship { get; set; }
