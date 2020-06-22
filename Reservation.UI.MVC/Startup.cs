@@ -1,7 +1,5 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Reservation.UI.MVC.Startup))]
 namespace Reservation.UI.MVC
 {
     public partial class Startup
