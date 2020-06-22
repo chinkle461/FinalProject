@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReservationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="LocationId" />
+    </Key>
+    <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="State" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="ZipCode" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="ReservationLimit" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Locations" FromRole="Locations" ToRole="Reservations" />
+  </EntityType>
+  <EntityType Name="OwnerAsset">
+    <Key>
+      <PropertyRef Name="OwnerAssetId" />
+    </Key>
+    <Property Name="OwnerAssetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AssetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OwnerId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AssetPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SpecialNotes" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Relationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="UserDetail" Relationship="Self.FK_OwnerAssets_UserDetails" FromRole="OwnerAssets" ToRole="UserDetails" />
+    <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_OwnerAssets" FromRole="OwnerAssets" ToRole="Reservations" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="ReservationId" />
+    </Key>
+    <Property Name="ReservationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OwnerAssetId" Type="Int32" Nullable="false" />
+    <Property Name="LocationId" Type="Int32" Nullable="false" />
+    <Property Name="ReservationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Location" Relationship="Self.FK_Reservations_Locations" FromRole="Reservations" ToRole="Locations" />
+    <NavigationProperty Name="OwnerAsset" Relationship="Self.FK_Reservations_OwnerAssets" FromRole="Reservations" ToRole="OwnerAssets" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserDetail">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="OwnerAssets" Relationship="Self.FK_OwnerAssets_UserDetails" FromRole="UserDetails" ToRole="OwnerAssets" />
+  </EntityType>
+  <Association Name="FK_Reservations_Locations">
+    <End Role="Locations" Type="Self.Location" Multiplicity="1" />
+    <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations">
+        <PropertyRef Name="LocationId" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OwnerAssets_UserDetails">
+    <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="1" />
+    <End Role="OwnerAssets" Type="Self.OwnerAsset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="OwnerAssets">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_OwnerAssets">
+    <End Role="OwnerAssets" Type="Self.OwnerAsset" Multiplicity="1" />
+    <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OwnerAssets">
+        <PropertyRef Name="OwnerAssetId" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="OwnerAssetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ReservationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Locations" EntityType="Self.Location" />
+    <EntitySet Name="OwnerAssets" EntityType="Self.OwnerAsset" />
+    <EntitySet Name="Reservations" EntityType="Self.Reservation" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
+    <AssociationSet Name="FK_Reservations_Locations" Association="Self.FK_Reservations_Locations">
+      <End Role="Locations" EntitySet="Locations" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OwnerAssets_UserDetails" Association="Self.FK_OwnerAssets_UserDetails">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="OwnerAssets" EntitySet="OwnerAssets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_OwnerAssets" Association="Self.FK_Reservations_OwnerAssets">
+      <End Role="OwnerAssets" EntitySet="OwnerAssets" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,12 @@
+C:\Users\student\Desktop\Portfolio\Final Project\Reservation\src\Reservation.DATA.EF\bin\Debug\Reservation.DATA.EF.dll.config
+C:\Users\student\Desktop\Portfolio\Final Project\Reservation\src\Reservation.DATA.EF\bin\Debug\Reservation.DATA.EF.dll
+C:\Users\student\Desktop\Portfolio\Final Project\Reservation\src\Reservation.DATA.EF\bin\Debug\Reservation.DATA.EF.pdb
+C:\Users\student\Desktop\Portfolio\Final Project\Reservation\src\Reservation.DATA.EF\bin\Debug\EntityFramework.dll
+C:\Users\student\Desktop\Portfolio\Final Project\Reservation\src\Reservation.DATA.EF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\student\Desktop\Portfolio\Final Project\Reservation\src\Reservation.DATA.EF\bin\Debug\EntityFramework.xml
+C:\Users\student\Desktop\Portfolio\Final Project\Reservation\src\Reservation.DATA.EF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\student\Desktop\Portfolio\Final Project\Reservation\src\Reservation.DATA.EF\obj\Debug\Reservation.DATA.EF.csprojAssemblyReference.cache
+C:\Users\student\Desktop\Portfolio\Final Project\Reservation\src\Reservation.DATA.EF\obj\Debug\Reservation.DATA.EF.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\Portfolio\Final Project\Reservation\src\Reservation.DATA.EF\obj\Debug\Reservation.DATA.EF.csproj.CopyComplete
+C:\Users\student\Desktop\Portfolio\Final Project\Reservation\src\Reservation.DATA.EF\obj\Debug\Reservation.DATA.EF.dll
+C:\Users\student\Desktop\Portfolio\Final Project\Reservation\src\Reservation.DATA.EF\obj\Debug\Reservation.DATA.EF.pdb

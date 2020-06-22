@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReservationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="LocationId" />
+    </Key>
+    <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocationName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="City" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="State" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="ZipCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="ReservationLimit" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OwnerAssets">
+    <Key>
+      <PropertyRef Name="OwnerAssetId" />
+    </Key>
+    <Property Name="OwnerAssetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AssetName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OwnerId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="AssetPhoto" Type="varchar" MaxLength="50" />
+    <Property Name="SpecialNotes" Type="varchar" MaxLength="300" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="DateAdded" Type="date" Nullable="false" />
+    <Property Name="Relationship" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reservations">
+    <Key>
+      <PropertyRef Name="ReservationId" />
+    </Key>
+    <Property Name="ReservationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OwnerAssetId" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="int" Nullable="false" />
+    <Property Name="ReservationDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="UserDetails">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_OwnerAssets_UserDetails">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
+    <End Role="OwnerAssets" Type="Self.OwnerAssets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="OwnerAssets">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_Locations">
+    <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
+    <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations">
+        <PropertyRef Name="LocationId" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_OwnerAssets">
+    <End Role="OwnerAssets" Type="Self.OwnerAssets" Multiplicity="1" />
+    <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OwnerAssets">
+        <PropertyRef Name="OwnerAssetId" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="OwnerAssetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ReservationModelStoreContainer">
+    <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OwnerAssets" EntityType="Self.OwnerAssets" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_OwnerAssets_UserDetails" Association="Self.FK_OwnerAssets_UserDetails">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="OwnerAssets" EntitySet="OwnerAssets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_Locations" Association="Self.FK_Reservations_Locations">
+      <End Role="Locations" EntitySet="Locations" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_OwnerAssets" Association="Self.FK_Reservations_OwnerAssets">
+      <End Role="OwnerAssets" EntitySet="OwnerAssets" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
