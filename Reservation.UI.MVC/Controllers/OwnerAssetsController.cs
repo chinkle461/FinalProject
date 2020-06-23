@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Reservation.DATA.EF;
 using Reservation.UI.MVC.Models;
 
@@ -19,8 +20,21 @@ namespace Reservation.UI.MVC.Controllers
         [Authorize(Roles = "Employee, Admin, User")]
         public ActionResult Index()
         {
-            var ownerAssets = db.OwnerAssets.Include(o => o.UserDetail);
-            return View(ownerAssets.ToList());
+            #region Owner Assets for their account only
+            
+            string userID = User.Identity.GetUserId();
+            if (User.IsInRole("User"))
+            {
+                var ownerAssets = db.OwnerAssets.Where(ud => ud.OwnerId == userID).Include(o => o.UserDetail);
+                return View(ownerAssets.ToList());
+            }
+            else
+            {
+                var ownerAssets = db.OwnerAssets.Include(o => o.UserDetail);
+                return View(ownerAssets.ToList());
+            }
+
+            #endregion
         }
 
         // GET: OwnerAssets/Details/5
@@ -84,6 +98,8 @@ namespace Reservation.UI.MVC.Controllers
                     ownerAsset.AssetPhoto = imageName;
                 }
                 #endregion
+
+                ownerAsset.OwnerId = User.Identity.GetUserId();//add this to add assets to their userid
 
                 db.OwnerAssets.Add(ownerAsset);
                 db.SaveChanges();

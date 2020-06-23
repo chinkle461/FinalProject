@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Reservation.DATA.EF;
 using Reservation.UI.MVC.Models;
 
@@ -19,8 +20,21 @@ namespace Reservation.UI.MVC.Controllers
         [Authorize(Roles = "Employee, Admin, User")]
         public ActionResult Index()
         {
-            var reservations = db.Reservations.Include(r => r.Location).Include(r => r.OwnerAsset);
-            return View(reservations.ToList());
+            #region Reservations for the user account only
+            string userID = User.Identity.GetUserId();
+            if (User.IsInRole("User"))
+            {
+                var reservations = db.Reservations.Where(ud => ud.OwnerAsset.OwnerId == userID).Include(r => r.Location).Include(r => r.OwnerAsset);
+                return View(reservations.ToList());
+            }
+            else
+            {
+                var reservations = db.Reservations.Include(r => r.Location).Include(r => r.OwnerAsset);
+                return View(reservations.ToList());
+            }
+
+            #endregion           
+            
         }
 
         // GET: Reservations/Details/5
