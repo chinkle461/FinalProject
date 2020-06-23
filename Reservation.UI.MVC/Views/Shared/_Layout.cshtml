@@ -90,7 +90,7 @@
                                         <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
 
                                     }
-                                    @if (User.IsInRole("User"))
+                                    @if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("Employee"))
                                     {
                                         <li><a href="@Url.Action("Index", "Reservations")">Reservations</a></li>
                                         <li><a href="@Url.Action("Index", "OwnerAssets")">Account Information</a></li>
@@ -207,6 +207,7 @@
                     </div>
                 </div>
             </div>
+            <br />
 
             @RenderBody()
 

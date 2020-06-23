@@ -62,19 +62,27 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.OwnerAssetId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.OwnerAssetId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.OwnerAssetId })
-                </td>
+                @if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("Employee"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.OwnerAssetId })
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <span>
+                                | @Html.ActionLink("Delete", "Delete", new { id = item.OwnerAssetId })
+                            </span>
+                        }
+                    </td>
+                }
+
             </tr>
         }
     </tbody>
 </table>
 @section scripts{
     <script>
-            $(document).ready(function () {
-                $('.table').DataTable(); //the default is #myTable
-            });
+        $(document).ready(function () {
+            $('.table').DataTable(); //the default is #myTable
+        });
     </script>
 }

@@ -99,6 +99,8 @@ namespace Reservation.UI.MVC.Controllers
                 }
                 #endregion
 
+                ownerAsset.DateAdded = @DateTime.Now;
+
                 ownerAsset.OwnerId = User.Identity.GetUserId();//add this to add assets to their userid
 
                 db.OwnerAssets.Add(ownerAsset);
@@ -111,7 +113,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: OwnerAssets/Edit/5
-        [Authorize(Roles = "Admin, User")]
+        [Authorize(Roles = "Admin, User, Employee")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

@@ -32,7 +32,6 @@ namespace Reservation.UI.MVC.Controllers
                 var reservations = db.Reservations.Include(r => r.Location).Include(r => r.OwnerAsset);
                 return View(reservations.ToList());
             }
-
             #endregion           
             
         }
@@ -57,8 +56,9 @@ namespace Reservation.UI.MVC.Controllers
         [Authorize(Roles = "Admin, User")]
         public ActionResult Create()
         {
+            string userID = User.Identity.GetUserId();
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName");
-            ViewBag.OwnerAssetId = new SelectList(db.OwnerAssets, "OwnerAssetId", "AssetName");
+            ViewBag.OwnerAssetId = new SelectList(db.OwnerAssets.Where(ud => ud.OwnerId == userID), "OwnerAssetId", "AssetName");//added so that only that users info is accessible
             return View();
         }
 
@@ -94,8 +94,9 @@ namespace Reservation.UI.MVC.Controllers
             {
                 return HttpNotFound();
             }
+            string userID = User.Identity.GetUserId();
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName", reservation.LocationId);
-            ViewBag.OwnerAssetId = new SelectList(db.OwnerAssets, "OwnerAssetId", "AssetName", reservation.OwnerAssetId);
+            ViewBag.OwnerAssetId = new SelectList(db.OwnerAssets.Where(ud => ud.OwnerId == userID), "OwnerAssetId", "AssetName", reservation.OwnerAssetId);//added so they can only edit their records
             return View(reservation);
         }
 

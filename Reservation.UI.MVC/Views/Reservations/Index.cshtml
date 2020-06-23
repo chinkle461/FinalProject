@@ -37,19 +37,27 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.OwnerAsset.AssetName)
                 </td>
+                @if (User.IsInRole("User") || User.IsInRole("Admin"))
+                {
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ReservationId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ReservationId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ReservationId })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ReservationId })
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <span>
+                            | @Html.ActionLink("Delete", "Delete", new { id = item.ReservationId })
+                        </span>
+                    }
                 </td>
+                }
+                
             </tr>
         }
     </tbody>
 </table>
 @section scripts{
     <script>
-            $(document).ready(function () {
-                $('.table').DataTable(); //the default is #myTable
-            });
+        $(document).ready(function () {
+            $('.table').DataTable(); //the default is #myTable
+        });
     </script>
 }

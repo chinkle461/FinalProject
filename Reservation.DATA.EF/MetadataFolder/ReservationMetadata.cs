@@ -90,8 +90,9 @@ namespace Reservation.DATA.EF//.MetadataFolder
         public bool IsActive { get; set; }
 
         [Display(Name = " Date Reserved ")]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public System.DateTime DateAdded { get; set; }
+
         public string Relationship { get; set; }
     }
     [MetadataType(typeof(OwnerAssetMetadata))]
