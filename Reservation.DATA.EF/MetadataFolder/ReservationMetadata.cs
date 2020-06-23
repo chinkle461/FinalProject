@@ -49,6 +49,7 @@ namespace Reservation.DATA.EF//.MetadataFolder
 
         public int OwnerAssetId { get; set; }
 
+        [Display(Name = "Location")]
         public int LocationId { get; set; }
 
         [Display(Name = "Reservation Date")]
@@ -113,7 +114,8 @@ namespace Reservation.DATA.EF//.MetadataFolder
         public string LastName { get; set; }
     }
     [MetadataType(typeof(UserDetailMetadata))]
-    public partial class UserDetail {
+    public partial class UserDetail
+    {
         [Display(Name = "Name")]
         public string FullName { get { return FirstName + " " + LastName; } }
     }

@@ -16,7 +16,7 @@ namespace Reservation.UI.MVC.Controllers
         private ReservationEntities db = new ReservationEntities();
 
         // GET: Reservations
-        [Authorize(Roles = "Employee, Admin")]
+        [Authorize(Roles = "Employee, Admin, User")]
         public ActionResult Index()
         {
             var reservations = db.Reservations.Include(r => r.Location).Include(r => r.OwnerAsset);
@@ -24,7 +24,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: Reservations/Details/5
-        [Authorize(Roles = "Employee, Admin")]
+        [Authorize(Roles = "Employee, Admin, User")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,7 +40,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: Reservations/Create
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Create()
         {
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName");
@@ -68,7 +68,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: Reservations/Edit/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Employee, Admin, User")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -104,7 +104,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: Reservations/Delete/5
-        [Authorize(Roles = "Employee, Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

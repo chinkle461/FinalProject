@@ -16,7 +16,7 @@ namespace Reservation.UI.MVC.Controllers
         private ReservationEntities db = new ReservationEntities();
 
         // GET: OwnerAssets
-        [Authorize(Roles = "Employee, Admin")]
+        [Authorize(Roles = "Employee, Admin, User")]
         public ActionResult Index()
         {
             var ownerAssets = db.OwnerAssets.Include(o => o.UserDetail);
@@ -24,7 +24,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: OwnerAssets/Details/5
-        [Authorize(Roles = "Employee, Admin")]
+        [Authorize(Roles = "Employee, Admin, User")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,7 +40,7 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         // GET: OwnerAssets/Create
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Create()
         {
             ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FirstName");
@@ -74,7 +74,7 @@ namespace Reservation.UI.MVC.Controllers
                     {
                         imageName = Guid.NewGuid() + ext;
 
-                        image.SaveAs(Server.MapPath("~/Content/images" + imageName));
+                        image.SaveAs(Server.MapPath("~/Content/images/" + imageName));
                     }
 
                     else
@@ -90,12 +90,12 @@ namespace Reservation.UI.MVC.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FullName", ownerAsset.OwnerId);
+            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FirstName", ownerAsset.OwnerId);
             return View(ownerAsset);
         }
 
         // GET: OwnerAssets/Edit/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -107,7 +107,7 @@ namespace Reservation.UI.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FullName", ownerAsset.OwnerId);
+            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FirstName", ownerAsset.OwnerId);
             return View(ownerAsset);
         }
 
@@ -152,7 +152,7 @@ namespace Reservation.UI.MVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FullName", ownerAsset.OwnerId);
+            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FirstName", ownerAsset.OwnerId);
             return View(ownerAsset);
         }
 
