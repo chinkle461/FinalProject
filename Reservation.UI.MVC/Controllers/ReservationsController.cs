@@ -58,7 +58,14 @@ namespace Reservation.UI.MVC.Controllers
         {
             string userID = User.Identity.GetUserId();
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName");
-            ViewBag.OwnerAssetId = new SelectList(db.OwnerAssets.Where(ud => ud.OwnerId == userID), "OwnerAssetId", "AssetName");//added so that only that users info is accessible
+            if (User.IsInRole("User"))
+            {
+                ViewBag.OwnerAssetId = new SelectList(db.OwnerAssets.Where(ud => ud.OwnerId == userID), "OwnerAssetId", "AssetName");//added so that only that users info is accessible
+            }
+            else
+            {
+                ViewBag.OwnerAssetId = new SelectList(db.OwnerAssets, "OwnerAssetId", "AssetName");
+            }          
             return View();
         }
 
@@ -71,6 +78,7 @@ namespace Reservation.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Reservations.Add(reservation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -96,7 +104,14 @@ namespace Reservation.UI.MVC.Controllers
             }
             string userID = User.Identity.GetUserId();
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName", reservation.LocationId);
-            ViewBag.OwnerAssetId = new SelectList(db.OwnerAssets.Where(ud => ud.OwnerId == userID), "OwnerAssetId", "AssetName", reservation.OwnerAssetId);//added so they can only edit their records
+            if (User.IsInRole("User"))
+            {
+                ViewBag.OwnerAssetId = new SelectList(db.OwnerAssets.Where(ud => ud.OwnerId == userID), "OwnerAssetId", "AssetName", reservation.OwnerAssetId);//added so they can only edit their records
+            }
+            else
+            {
+                ViewBag.OwnerAssetId = new SelectList(db.OwnerAssets, "OwnerAssetId", "AssetName", reservation.OwnerAssetId);
+            }             
             return View(reservation);
         }
 

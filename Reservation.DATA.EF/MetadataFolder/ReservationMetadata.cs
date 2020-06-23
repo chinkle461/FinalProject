@@ -71,7 +71,7 @@ namespace Reservation.DATA.EF//.MetadataFolder
         [Display(Name = "Name")]
         public string AssetName { get; set; }
 
-        [Required(ErrorMessage = "*** Owner is required ***")]
+        //[Required(ErrorMessage = "*** Owner is required ***")]
         [StringLength(128, ErrorMessage = "*** Max 128 characters ***")]
         public string OwnerId { get; set; }
 

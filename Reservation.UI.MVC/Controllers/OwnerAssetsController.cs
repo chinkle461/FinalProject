@@ -95,8 +95,9 @@ namespace Reservation.UI.MVC.Controllers
                     {
                         imageName = "noImage.png";
                     }
-                    ownerAsset.AssetPhoto = imageName;
+                    
                 }
+                ownerAsset.AssetPhoto = imageName;
                 #endregion
 
                 ownerAsset.DateAdded = @DateTime.Now;

@@ -5,10 +5,12 @@
 }
 
 <h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("Admin") || User.IsInRole("User"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -39,17 +41,17 @@
                 </td>
                 @if (User.IsInRole("User") || User.IsInRole("Admin"))
                 {
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ReservationId })
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <span>
-                            | @Html.ActionLink("Delete", "Delete", new { id = item.ReservationId })
-                        </span>
-                    }
-                </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ReservationId })
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <span>
+                                | @Html.ActionLink("Delete", "Delete", new { id = item.ReservationId })
+                            </span>
+                        }
+                    </td>
                 }
-                
+
             </tr>
         }
     </tbody>
