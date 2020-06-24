@@ -15,6 +15,24 @@ namespace Reservation.UI.MVC.Controllers
         }
 
         [HttpGet]
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Rooms()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Restuarant()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult Contact()
         {
             return View();

@@ -1,308 +1,194 @@
 ﻿<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+
+<html lang="en">
+
 <head>
+    <title>@ViewBag.Title | Harborlights Hotels</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Luxe &mdash; 100% Free Fully Responsive HTML5 Template by FREEHTML5.co</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
-    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
-    <meta name="author" content="FREEHTML5.CO" />
-    <!--
-      //////////////////////////////////////////////////////
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Hotel website with amazing ammenities." />
+    <meta name="keywords" content="hotel, restaurant, rooms, sleep, luxury, exercise" />
+    <meta name="author" content="Christopher Hinkle" />
 
-      FREE HTML5 TEMPLATE
-      DESIGNED & DEVELOPED by FREEHTML5.CO
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/animate.css">
 
-      Website: 		http://freehtml5.co/
-      Email: 			info@freehtml5.co
-      Twitter: 		http://twitter.com/fh5co
-      Facebook: 		https://www.facebook.com/fh5co
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/css/aos.css">
+    <link rel="stylesheet" href="~/Content/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Content/css/jquery.timepicker.css">
 
-      //////////////////////////////////////////////////////
-       -->
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:description" content="" />
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="shortcut icon" href="favicon.ico">
-    <!-- <link href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700italic,900,700,900italic' rel='stylesheet' type='text/css'> -->
-    <!-- Stylesheets -->
-    <!-- Dropdown Menu -->
-    <link rel="stylesheet" href="~/Content/css/superfish.css">
-    <!-- Owl Slider -->
-    <!-- <link rel="stylesheet" href="css/owl.carousel.css"> -->
-    <!-- <link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
-    <!-- Date Picker -->
-    <link rel="stylesheet" href="~/Content/css/bootstrap-datepicker.min.css">
-    <!-- CS Select -->
-    <link rel="stylesheet" href="~/Content/css/cs-select.css">
-    <link rel="stylesheet" href="~/Content/css/cs-skin-border.css">
-    <!-- Themify Icons -->
-    <link rel="stylesheet" href="~/Content/css/themify-icons.css">
-    <!-- Flat Icon -->
     <link rel="stylesheet" href="~/Content/css/flaticon.css">
-    <!-- Icomoon -->
     <link rel="stylesheet" href="~/Content/css/icomoon.css">
-    <!-- Flexslider  -->
-    <link rel="stylesheet" href="~/Content/css/flexslider.css">
-    <!-- Style -->
     <link rel="stylesheet" href="~/Content/css/style.css">
     <!--Tables-->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
     <!--Date Picker -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Custom Stylesheet -->
+
     <link href="~/Content/css/_custom.css" rel="stylesheet" />
-    <!-- Modernizr JS -->
-    <script src="~/Content/js/modernizr-2.6.2.min.js"></script>
-    <!-- FOR IE9 below -->
-    <!--[if lt IE 9]>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
-    <div id="fh5co-wrapper">
-        <div id="fh5co-page">
-            <div id="fh5co-header">
-                <header id="fh5co-header-section">
-                    <div class="container">
-                        <div class="nav-header">
-                            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-                            <h1 id="fh5co-logo"><a href="@Url.Action("Index", "Home")">Luxe</a></h1>
-                            <nav id="fh5co-menu-wrap" role="navigation">
-                                <ul class="sf-menu" id="fh5co-primary-menu">
-                                    <li><a class="active" href="@Url.Action("Index", "Home")">Home</a></li>
-                                    @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
-                                    {
-                                        <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">Harbor<span>lights</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="@Url.Action("About", "Home")" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Rooms", "Home")" class="nav-link">Rooms</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Restuarant", "Home")" class="nav-link">Restaurant</a></li>
+                    @if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("Employee"))
+                    {
+                        <li class="nav-item"><a href="@Url.Action("Index", "Reservations")" class="nav-link">Reservations</a></li>
+                        <li class="nav-item"><a href="@Url.Action("Index", "OwnerAssets")" class="nav-link">Account</a></li>
+                    }
+                    <li class="nav-item"><a href="@Url.Action("Contact", "Home")" class="nav-link">Contact</a></li>
+                    <li class="nav-item dropdown">
+                        @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                        {
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.Action("Index", "Locations")">Locations</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "UsersAdmin")">User Roles</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "RolesAdmin")">Roles Admin</a>
 
-                                    }
-                                    @if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("Employee"))
-                                    {
-                                        <li><a href="@Url.Action("Index", "Reservations")">Reservations</a></li>
-                                        <li><a href="@Url.Action("Index", "OwnerAssets")">Account Information</a></li>
-                                    }
+                            </div>
+                        }
+                    </li>
 
-                                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
-                                </ul>
-                                <ul>
-                                    <li>@Html.Partial("_LoginPartial")</li>
-                                    @if (User.IsInRole("Admin"))
-                                    {
-                                        <li>@Html.ActionLink("User Roles", "Index", "UsersAdmin")</li>
-                                        <li>@Html.ActionLink("Roles Admin", "Index", "RolesAdmin")</li>
-                                    }
-                                </ul>
-
-                            </nav>
-                        </div>
-                    </div>
-                </header>
-
+                    @Html.Partial("_LoginPartial")
+                </ul>
             </div>
-            <!-- end:fh5co-header -->
-            <aside id="fh5co-hero" class="js-fullheight">
-                <div class="flexslider js-fullheight">
-                    <ul class="slides">
-                        <li style="background-image: url(~/Content/images/slider1.jpg);">
-                            <div class="overlay-gradient"></div>
-                            <div class="container">
-                                <div class="col-md-12 col-md-offset-0 text-center slider-text">
-                                    <div class="slider-text-inner js-fullheight">
-                                        <div class="desc">
-                                            <p><span>Bora Hotel</span></p>
-                                            <h2>Reserve Room for Family Vacation</h2>
-                                            <p>
-                                                <a href="#" class="btn btn-primary btn-lg">Book Now</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li style="background-image: url(~/Content/images/slider2.jpg);">
-                            <div class="overlay-gradient"></div>
-                            <div class="container">
-                                <div class="col-md-12 col-md-offset-0 text-center slider-text">
-                                    <div class="slider-text-inner js-fullheight">
-                                        <div class="desc">
-                                            <p><span>Deluxe Hotel</span></p>
-                                            <h2>Make Your Vacation Comfortable</h2>
-                                            <p>
-                                                <a href="#" class="btn btn-primary btn-lg">Book Now</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li style="background-image: url(~/Content/images/slider3.jpg);">
-                            <div class="overlay-gradient"></div>
-                            <div class="container">
-                                <div class="col-md-12 col-md-offset-0 text-center slider-text">
-                                    <div class="slider-text-inner js-fullheight">
-                                        <div class="desc">
-                                            <p><span>Luxe Hotel</span></p>
-                                            <h2>A Best Place To Enjoy Your Life</h2>
-                                            <p>
-                                                <a href="#" class="btn btn-primary btn-lg">Book Now</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-            </aside>
-            <div class="wrap">
+        </div>
+    </nav>
+    <!-- END nav -->
+    <div class="hero">
+        <section class="home-slider owl-carousel">
+            <div class="slider-item" style="background-image:url(/Content/images/bg_1.jpg);">
+                <div class="overlay"></div>
                 <div class="container">
-                    <div class="row">
-                        <div id="availability">
-                            <form action="#">
-                                <div class="a-col">
-                                    <section>
-                                        <select class="cs-select cs-skin-border">
-                                            <option value="" disabled selected>Select Hotel</option>
-                                            <option value="email">Luxe Hotel</option>
-                                            <option value="twitter">Deluxe Hotel</option>
-                                            <option value="linkedin">Five Star Hotel</option>
-                                        </select>
-                                    </section>
-                                </div>
-                                <div class="a-col alternate">
-                                    <div class="input-field">
-                                        <label for="date-start">Check In</label>
-                                        <input type="text" class="form-control" id="date-start" />
-                                    </div>
-                                </div>
-                                <div class="a-col alternate">
-                                    <div class="input-field">
-                                        <label for="date-end">Check Out</label>
-                                        <input type="text" class="form-control" id="date-end" />
-                                    </div>
-                                </div>
-                                <div class="a-col action">
-                                    <a href="#">
-                                        <span>Check</span>
-                                        Availability
-                                    </a>
-                                </div>
-                            </form>
+                    <div class="row no-gutters slider-text align-items-center justify-content-end">
+                        <div class="col-md-6 ftco-animate">
+                            <div class="text">
+                                <h2>More than a hotel... it is an experience!</h2>
+                                <h1 class="mb-3">Hotel for the whole family, all year round.</h1>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <br />
-
-            @RenderBody()
-
-            <footer id="footer" class="fh5co-bg-color">
+            <div class="slider-item" style="background-image:url(/Content/images/bg_2.jpg);">
+                <div class="overlay"></div>
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="copyright">
-                                <p>
-                                    <small>
-                                        &copy; 2016 Free HTML5 Template. <br> All Rights Reserved. <br>
-                                        Designed by <a href="http://freehtml5.co" target="_blank">FreeHTML5.co</a> <br> Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a>
-                                    </small>
-                                </p>
+                    <div class="row no-gutters slider-text align-items-center justify-content-end">
+                        <div class="col-md-6 ftco-animate">
+                            <div class="text">
+                                <h2>Harbor Lights Hotel &amp; Resort</h2>
+                                <h1 class="mb-3">It feels like staying in your own home.</h1>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h3>Company</h3>
-                                    <ul class="link">
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Hotels</a></li>
-                                        <li><a href="#">Customer Care</a></li>
-                                        <li><a href="#">Contact Us</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-3">
-                                    <h3>Our Facilities</h3>
-                                    <ul class="link">
-                                        <li><a href="#">Resturant</a></li>
-                                        <li><a href="#">Bars</a></li>
-                                        <li><a href="#">Pick-up</a></li>
-                                        <li><a href="#">Swimming Pool</a></li>
-                                        <li><a href="#">Spa</a></li>
-                                        <li><a href="#">Gym</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6">
-                                    <h3>Subscribe</h3>
-                                    <p>Sed cursus ut nibh in semper. Mauris varius et magna in fermentum. </p>
-                                    <form action="#" id="form-subscribe">
-                                        <div class="form-field">
-                                            <input type="email" placeholder="Email Address" id="email">
-                                            <input type="submit" id="submit" value="Send">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <ul class="social-icons">
-                                <li>
-                                    <a href="#"><i class="icon-twitter-with-circle"></i></a>
-                                    <a href="#"><i class="icon-facebook-with-circle"></i></a>
-                                    <a href="#"><i class="icon-instagram-with-circle"></i></a>
-                                    <a href="#"><i class="icon-linkedin-with-circle"></i></a>
-                                </li>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    @RenderBody()
+
+    <footer class="ftco-footer ftco-section img" style="background-image: url(/Content/images/bg_4.jpg);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Harbor Lights</h2>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                            <li class="ftco-animate"><a href="https://www.github.com/chinkle461"><span class="icon-github"></span></a></li>
+                            <li class="ftco-animate"><a href="http://www.linkedin.com/pub/christopher-hinkle/55/bb1/695"><span class="icon-linkedin"></span></a></li>
+                            <li class="ftco-animate"><a href="https://www.instagram.com/chris_hinkle1981/"><span class="icon-instagram"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4 ml-md-5">
+                        <h2 class="ftco-heading-2">Useful Links</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="@Url.Action("Rooms", "Home")" class="py-2 d-block">Rooms</a></li>
+                            <li><a href="@Url.Action("Restuarant", "Home")" class="py-2 d-block">Restaurant</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">About Us</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="@Url.Action("About", "Home")" class="py-2 d-block">About Us</a></li>
+                            <li><a href="@Url.Action("Contact", "Home")" class="py-2 d-block">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Visit our home office!</h2>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+                                <li><a href="mailto:admin@christopherahinkle.com"><span class="icon icon-envelope"></span><span class="text">admin@christopherahinkle.com</span></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-            </footer>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy; @DateTime.Now.Year Christopher Hinkle | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+            </div>
         </div>
-        <!-- END fh5co-page -->
-    </div>
-    <!-- END fh5co-wrapper -->
-    <!-- Javascripts -->
-    <script src="~/Content/js/jquery-2.1.4.min.js"></script>
-    <!-- Dropdown Menu -->
-    <script src="~/Content/js/hoverIntent.js"></script>
-    <script src="~/Content/js/superfish.js"></script>
-    <!-- Bootstrap -->
+    </footer>
+
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Content/js/popper.min.js"></script>
     <script src="~/Content/js/bootstrap.min.js"></script>
-    <!-- Waypoints -->
+    <script src="~/Content/js/jquery.easing.1.3.js"></script>
     <script src="~/Content/js/jquery.waypoints.min.js"></script>
-    <!-- Counters -->
-    <script src="~/Content/js/jquery.countTo.js"></script>
-    <!-- Stellar Parallax -->
     <script src="~/Content/js/jquery.stellar.min.js"></script>
-    <!-- Owl Slider -->
-    <!-- // <script src="js/owl.carousel.min.js"></script> -->
-    <!-- Date Picker -->
-    <script src="~/Content/js/bootstrap-datepicker.min.js"></script>
-    <!-- CS Select -->
-    <script src="~/Content/js/classie.js"></script>
-    <script src="~/Content/js/selectFx.js"></script>
-    <!-- Flexslider -->
-    <script src="~/Content/js/jquery.flexslider-min.js"></script>
-    <script src="~/Content/js/custom.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/js/aos.js"></script>
+    <script src="~/Content/js/jquery.animateNumber.min.js"></script>
+    <script src="~/Content/js/bootstrap-datepicker.js"></script>
+    <script src="~/Content/js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="~/Content/js/google-map.js"></script>
+    <script src="~/Content/js/main.js"></script>
     <!--Date Picker -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- Datatables -->
     <script type="text/javascript" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
     @RenderSection("scripts", false)
+
 </body>
 </html>
