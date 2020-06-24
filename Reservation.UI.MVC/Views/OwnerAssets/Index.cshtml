@@ -4,84 +4,89 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-@if (User.IsInRole("Admin") || User.IsInRole("User"))
-{
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-}
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AssetName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AssetPhoto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SpecialNotes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateAdded)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Relationship)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserDetail.FirstName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="tables">
+    <h2>Customers</h2>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            @if (User.IsInRole("Admin") || User.IsInRole("User"))
+            {
+                @Html.ActionLink("Add Customer", "Create", "OwnerAssets", null, new { @class = "btn btn-primary rounded" })
+            }
+        </div>
+    </div>
+    <br />
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AssetName)
-                </td>
-                <td>
-                    @*@Html.DisplayFor(modelItem => item.AssetPhoto)*@
-                    <img src="~/Content/images/@item.AssetPhoto" class="img-fluid" alt="Photo of @item.AssetName" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SpecialNotes)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsActive)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateAdded)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Relationship)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
-                </td>
-                @if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("Employee"))
-                {
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.OwnerAssetId })
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <span>
-                                | @Html.ActionLink("Delete", "Delete", new { id = item.OwnerAssetId })
-                            </span>
-                        }
-                    </td>
-                }
-
+                <th>
+                    @Html.DisplayNameFor(model => model.AssetName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AssetPhoto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SpecialNotes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateAdded)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Relationship)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssetName)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.AssetPhoto)*@
+                        <img src="~/Content/images/@item.AssetPhoto" class="img-fluid" alt="Photo of @item.AssetName" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpecialNotes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateAdded)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Relationship)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
+                    </td>
+                    @if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("Employee"))
+                    {
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.OwnerAssetId })
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <span>
+                                    | @Html.ActionLink("Delete", "Delete", new { id = item.OwnerAssetId })
+                                </span>
+                            }
+                        </td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 @section scripts{
     <script>
         $(document).ready(function () {

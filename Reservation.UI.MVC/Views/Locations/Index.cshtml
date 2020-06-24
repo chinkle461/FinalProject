@@ -4,75 +4,81 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-@if (User.IsInRole("Admin"))
-{
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-}
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LocationName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.State)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ZipCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReservationLimit)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LocationName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZipCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReservationLimit)
-            </td>
+<div class="tables">
+    <h2>Locations</h2>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
             @if (User.IsInRole("Admin"))
             {
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.LocationId }) |
-                    @*@Html.ActionLink("Details", "Details", new { id = item.LocationId }) |*@
-                    @Html.ActionLink("Delete", "Delete", new { id = item.LocationId })
-                </td>
+                @Html.ActionLink("Add Location", "Create", "Locations", null, new { @class = "btn btn-primary rounded" })
             }
-        </tr>
-        }
-    </tbody>
-</table>
+        </div>
+    </div>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LocationName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.State)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ZipCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReservationLimit)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocationName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.State)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ZipCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReservationLimit)
+                    </td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.LocationId }) |
+                            @*@Html.ActionLink("Details", "Details", new { id = item.LocationId }) |*@
+                            @Html.ActionLink("Delete", "Delete", new { id = item.LocationId })
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 @section scripts{
     <script>
-            $(document).ready(function () {
-                $('.table').DataTable(); //the default is #myTable
-            });
+        $(document).ready(function () {
+            $('.table').DataTable(); //the default is #myTable
+        });
     </script>
 }
