@@ -44,8 +44,15 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="@Url.Action("About", "Home")" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="@Url.Action("Rooms", "Home")" class="nav-link">Rooms</a></li>
-                    <li class="nav-item"><a href="@Url.Action("Restuarant", "Home")" class="nav-link">Restaurant</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Amenities
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="@Url.Action("Rooms", "Home")">Rooms</a>
+                            <a class="dropdown-item" href="@Url.Action("Restuarant", "Home")">Restaurant</a>
+                        </div>
+                    </li>
                     @if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("Employee"))
                     {
                         <li class="nav-item"><a href="@Url.Action("Index", "Reservations")" class="nav-link">Reservations</a></li>

@@ -1,2 +1,10 @@
-﻿body {
+﻿#logoff{
+    margin-top:1em;
+    /*padding-top:.9em;*/
+    color: rgba(255, 255, 255, .9);
+}
+
+div.tables{
+    margin-left:2em;
+    margin-right:2em;
 }
