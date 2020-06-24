@@ -32,8 +32,8 @@ namespace Reservation.UI.MVC.Controllers
                 var reservations = db.Reservations.Include(r => r.Location).Include(r => r.OwnerAsset);
                 return View(reservations.ToList());
             }
-            #endregion           
-            
+            #endregion
+
         }
 
         // GET: Reservations/Details/5
@@ -65,7 +65,7 @@ namespace Reservation.UI.MVC.Controllers
             else
             {
                 ViewBag.OwnerAssetId = new SelectList(db.OwnerAssets, "OwnerAssetId", "AssetName");
-            }          
+            }
             return View();
         }
 
@@ -78,10 +78,21 @@ namespace Reservation.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                
-                db.Reservations.Add(reservation);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //this gives you the # of reservations there are currently
+                int nbrRes = db.Reservations.Where(c => c.ReservationDate == reservation.ReservationDate && c.LocationId == reservation.LocationId).Count();
+                //this gives you the reservation limit at the location
+                int resLimit = db.Locations.Where(x => x.LocationId == reservation.LocationId).FirstOrDefault().ReservationLimit;
+
+                if (nbrRes < resLimit)
+                {
+                    db.Reservations.Add(reservation);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
             }
 
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName", reservation.LocationId);
@@ -111,7 +122,7 @@ namespace Reservation.UI.MVC.Controllers
             else
             {
                 ViewBag.OwnerAssetId = new SelectList(db.OwnerAssets, "OwnerAssetId", "AssetName", reservation.OwnerAssetId);
-            }             
+            }
             return View(reservation);
         }
 

@@ -100,7 +100,7 @@ namespace Reservation.UI.MVC.Controllers
                 ownerAsset.AssetPhoto = imageName;
                 #endregion
 
-                ownerAsset.DateAdded = @DateTime.Now;
+                ownerAsset.DateAdded = @DateTime.Now;//added for it automatically update the time
 
                 ownerAsset.OwnerId = User.Identity.GetUserId();//add this to add assets to their userid
 
