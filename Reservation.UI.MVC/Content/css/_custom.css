@@ -1,10 +1,97 @@
-﻿#logoff{
+﻿/* Login Pages */
+#logoff{
     margin-top:.9em;
     /*padding-top:.9em;*/
     color: rgba(255, 255, 255, .9);
 }
 
+#loginForm {
+    margin-left: 10em;
+}
+
+/* Tables Styling */
 div.tables{
     margin-left:2em;
     margin-right:2em;
+}
+
+td img {
+    max-height: 8em;
+    max-width: 8em;
+}
+
+/* Contact Form Styling */
+.form-group {
+    align-content: center;
+    width: 800px;
+}
+
+main {
+    height: 600px;
+    margin-left: 4em;
+}
+
+div.form-group input {
+    border: solid 1px #111;
+}
+
+div.form-horizontal {
+    font-family: inherit;
+}
+
+div.form-group textarea {
+    border: solid 1px #111;
+    height: 15em;
+    resize: none;
+}
+
+@media screen and (max-width: 1360px) {
+    .form-group {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 815px) {
+    .form-group {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .form-group {
+        width: 400px;
+    }
+}
+
+a {
+    color: black;
+}
+
+
+/* Create/Edit/Delete Views */
+.FooterLeft {
+    float: left;
+    margin-top: 1em;
+    width: 2%;
+}
+
+.FooterRight {
+    margin-top: 1em;
+    padding-top:.8em;
+    text-align: right;
+    font-size: 18px;
+    margin-right:7em;
+}
+
+.DeleteFooterRight {
+    margin-top: .9em;
+    padding-top: .9em;
+    text-align: right;
+    font-size: 18px;
+    margin-right: 19em;
+}
+
+.form-group img {
+    max-height: 10em;
+    max-width: 10em;
 }

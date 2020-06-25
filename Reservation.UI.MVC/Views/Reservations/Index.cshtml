@@ -42,6 +42,7 @@
                         @Html.DisplayFor(modelItem => item.Location.LocationName)
                     </td>
                     <td>
+                        <img src="~/Content/images/@item.OwnerAsset.AssetPhoto" class="img-fluid" alt="Photo of @item.OwnerAsset.AssetName" />
                         @Html.DisplayFor(modelItem => item.OwnerAsset.AssetName)
                     </td>
                     @if (User.IsInRole("User") || User.IsInRole("Admin"))

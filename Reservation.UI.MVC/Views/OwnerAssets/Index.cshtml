@@ -20,25 +20,28 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.AssetName)
+                    @*@Html.DisplayNameFor(model => model.UserDetail.FirstName)*@
+                    Account Holder Name
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.AssetName)*@
+                    Reserved For
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.AssetPhoto)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.SpecialNotes)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IsActive)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateAdded)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.Relationship)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+                    @Html.DisplayNameFor(model => model.SpecialNotes)
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.IsActive)*@
+                    Active
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateAdded)
                 </th>
                 <th></th>
             </tr>
@@ -48,11 +51,17 @@
             {
                 <tr>
                     <td>
+                        @Html.DisplayFor(modelItem => item.UserDetail.FullName)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.AssetName)
                     </td>
                     <td>
                         @*@Html.DisplayFor(modelItem => item.AssetPhoto)*@
                         <img src="~/Content/images/@item.AssetPhoto" class="img-fluid" alt="Photo of @item.AssetName" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Relationship)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.SpecialNotes)
@@ -62,12 +71,6 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DateAdded)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Relationship)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
                     </td>
                     @if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("Employee"))
                     {

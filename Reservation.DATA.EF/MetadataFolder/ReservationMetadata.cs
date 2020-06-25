@@ -47,6 +47,7 @@ namespace Reservation.DATA.EF//.MetadataFolder
     {
         public int ReservationId { get; set; }
 
+        [Display(Name = "Reserved For")]
         public int OwnerAssetId { get; set; }
 
         [Display(Name = "Location")]
@@ -76,17 +77,17 @@ namespace Reservation.DATA.EF//.MetadataFolder
         public string OwnerId { get; set; }
 
         [StringLength(50, ErrorMessage = "*** Max 50 characters ***")]
-        [DisplayFormat(NullDisplayText = "[-N/A-]")]
+        [DisplayFormat(NullDisplayText = "[N/A]")]
         [Display(Name = "Photo")]
         public string AssetPhoto { get; set; }
 
         [StringLength(300, ErrorMessage = "*** Max 300 characters ***")]
         [Display(Name = "Notes")]
-        [DisplayFormat(NullDisplayText = "[-N/A-]")]
+        [DisplayFormat(NullDisplayText = "[N/A]")]
         public string SpecialNotes { get; set; }
 
         [Required(ErrorMessage = "*** Is Active is Required ***")]
-        [Display(Name = "Is Active")]
+        [Display(Name = "Active")]
         public bool IsActive { get; set; }
 
         [Display(Name = " Date Reserved ")]
