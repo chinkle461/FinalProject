@@ -25,7 +25,7 @@
         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
         {
         @Html.AntiForgeryToken()
-        <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link" id="logoff">Log off</a>}
+        <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link scrolled" id="logoff">Log off</a>}
     </li>
 }
 else {

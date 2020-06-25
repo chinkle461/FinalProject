@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <p>We are currently fully booked for that evening.  We value your business, please try another evening.  </p>
+    </div>
+    <br />
+    <p><a href="@Url.Action("Index", "Reservations")" class="btn btn-primary rounded">Return to reservations</a></p>
+</div>

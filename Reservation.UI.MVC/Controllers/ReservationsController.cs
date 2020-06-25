@@ -91,7 +91,7 @@ namespace Reservation.UI.MVC.Controllers
                 }
                 else
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction("CustomError", "Errors");
                 }
             }
 

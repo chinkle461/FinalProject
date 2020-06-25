@@ -95,7 +95,6 @@ namespace Reservation.UI.MVC.Controllers
                     {
                         imageName = "noImage.png";
                     }
-                    
                 }
                 ownerAsset.AssetPhoto = imageName;
                 #endregion
@@ -140,17 +139,12 @@ namespace Reservation.UI.MVC.Controllers
             if (ModelState.IsValid)
             {
                 #region File Upload
-                string imageName = ownerAsset.AssetPhoto;
-
                 if (image != null)
                 {
-
-                    //get the file name for image 
-                    imageName = image.FileName;
+                    string imageName = image.FileName;
 
                     string ext = imageName.Substring(imageName.LastIndexOf('.'));
 
-                    //create a list of valid extensions
                     string[] goodExts = { ".jpg", ".jpeg", ".png", ".gif" };
 
                     if (goodExts.Contains(ext.ToLower()) && image.ContentLength <= 4194304)
@@ -158,13 +152,9 @@ namespace Reservation.UI.MVC.Controllers
                         imageName = Guid.NewGuid() + ext;
 
                         image.SaveAs(Server.MapPath("~/Content/images/" + imageName));
-                    }
 
-                    else
-                    {
-                        imageName = "noImage.png";
+                        ownerAsset.AssetPhoto = imageName;
                     }
-                    ownerAsset.AssetPhoto = imageName;
                 }
                 #endregion
                 db.Entry(ownerAsset).State = EntityState.Modified;
