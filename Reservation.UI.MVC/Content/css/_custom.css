@@ -101,7 +101,7 @@ a {
     max-width: 10em;
 }
 
-.container {
+.cdeContainer {
     margin-left: 30em;
 }
 
@@ -124,25 +124,25 @@ a {
 }
 
 @media screen and (max-width: 1200px) {
-    .container {
+    .cdeContainer {
         margin-left: 20em;
     }
 }
 
 @media screen and (max-width: 1100px) {
-    .container {
+    .cdeContainer {
         margin-left: 15em;
     }
 }
 
 @media screen and (max-width: 1000px) {
-    .container {
+    .cdeContainer {
         margin-left: 10em;
     }
 }
 
 @media screen and (max-width: 850px) {
-    .container {
+    .cdeContainer {
         margin-left: 5em;
     }
 
@@ -153,15 +153,16 @@ a {
     .DeleteFooterRight {
         margin-right: 10em;
     }
+}
 
-    @media screen and (max-width: 767px) {
-        .FooterRight {
-            margin-right: 0em;
-        }
+@media screen and (max-width: 767px) {
+    .FooterRight {
+        margin-right: 0em;
     }
+}
 
-    @media screen and (max-width: 680px) {
-        .container {
-            margin-left: 0em;
-        }
+@media screen and (max-width: 680px) {
+    .cdeContainer {
+        margin-left: 0em;
     }
+}

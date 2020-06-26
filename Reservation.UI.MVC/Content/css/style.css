@@ -9137,7 +9137,7 @@ h1, h2, h3, h4, h5,
     bottom: 0;
     content: '';
     width: 360%;
-    background: #2f89fc; }
+    /*background: #2f89fc;*/ }
   @media (max-width: 767.98px) {
     .aside-stretch-2 {
       background: transparent; }
