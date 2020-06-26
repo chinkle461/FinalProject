@@ -691,7 +691,6 @@
     <Content Include="_Archive\scss\style.scss" />
     <Content Include="Views\Shared\_OriginalLayoutRedo.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Rooms.cshtml" />
     <Content Include="Views\Home\Restuarant.cshtml" />
     <Content Include="Views\Errors\CustomError.cshtml" />

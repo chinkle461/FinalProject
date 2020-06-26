@@ -36,10 +36,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.SpecialNotes)
                 </th>
-                <th>
-                    @*@Html.DisplayNameFor(model => model.IsActive)*@
-                    Active
-                </th>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.DateAdded)
                 </th>
@@ -66,9 +65,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.SpecialNotes)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.IsActive)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.DateAdded)
                     </td>

@@ -1,8 +1,13 @@
 ﻿/* Login Pages */
-#logoff{
-    margin-top:.9em;
+#logoff {
+    margin-top: .9em;
     /*padding-top:.9em;*/
     color: rgba(255, 255, 255, .9);
+}
+
+.ftco-navbar-light.scrolled .nav-link#logoff {
+    margin-top: -.2em !important;
+    font-size: inherit;
 }
 
 #loginForm {
@@ -10,14 +15,14 @@
 }
 
 /* Tables Styling */
-div.tables{
-    margin-left:2em;
-    margin-right:2em;
+div.tables {
+    margin-left: 2em;
+    margin-right: 2em;
 }
 
 td img {
     max-height: 8em;
-    max-width: 8em;
+    max-width: 6em !important;
 }
 
 /* Contact Form Styling */
@@ -77,10 +82,10 @@ a {
 
 .FooterRight {
     margin-top: 1em;
-    padding-top:.8em;
+    padding-top: .8em;
     text-align: right;
     font-size: 18px;
-    margin-right:7em;
+    margin-right: 7em;
 }
 
 .DeleteFooterRight {
@@ -95,3 +100,68 @@ a {
     max-height: 10em;
     max-width: 10em;
 }
+
+.container {
+    margin-left: 30em;
+}
+
+@media screen and (max-width: 1366px) {
+    .DeleteFooterRight {
+        margin-right: 19em;
+    }
+}
+
+@media screen and (max-width: 1361px) {
+    .DeleteFooterRight {
+        margin-right: 8em;
+    }
+}
+
+@media screen and (max-width: 501px) {
+    .DeleteFooterRight {
+        margin-left: 14em;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .container {
+        margin-left: 20em;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .container {
+        margin-left: 15em;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .container {
+        margin-left: 10em;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .container {
+        margin-left: 5em;
+    }
+
+    .FooterRight {
+        margin-right: 5em;
+    }
+
+    .DeleteFooterRight {
+        margin-right: 10em;
+    }
+
+    @media screen and (max-width: 767px) {
+        .FooterRight {
+            margin-right: 0em;
+        }
+    }
+
+    @media screen and (max-width: 680px) {
+        .container {
+            margin-left: 0em;
+        }
+    }
