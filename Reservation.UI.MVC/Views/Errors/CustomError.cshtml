@@ -3,12 +3,30 @@
     ViewBag.Title = "Error";
 }
 
-<h2>@ViewBag.Title</h2>
+<div class="hero-wrap" style="background-image: url('/Content/images/bg_3.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text d-flex align-itemd-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+                <div class="text">
+                    <h1 class="mb-4 bread">@ViewBag.Title</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div class="row">
-    <div class="col-md-12">
-        <p>We are currently fully booked for that evening.  We value your business, please try another evening.  </p>
+
+    <br />
+    <div class="row">
+        <div class="cdeContainer">
+            <br />
+            <div class="col-md-10">
+                <p>We are currently fully booked for that evening.  We value your business, please try another evening.</p>
+                <p>If you feel that you have received this message in error, please <a href="@Url.Action("Contact", "Home")">contact us.</a></p>
+            </div>
+            <br />
+            <div><a href="@Url.Action("Index", "Reservations")" class="btn btn-primary rounded">Return to reservations</a></div>
+        </div>
     </div>
     <br />
-    <p><a href="@Url.Action("Index", "Reservations")" class="btn btn-primary rounded">Return to reservations</a></p>
-</div>

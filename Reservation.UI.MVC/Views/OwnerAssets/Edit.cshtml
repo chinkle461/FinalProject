@@ -114,16 +114,16 @@ else if (User.IsInRole("Employee"))
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
+                <div class="clearfix"></div>
+                <div class="FooterLeft">
                     <input type="submit" value="Save" class="btn btn-primary rounded" />
                 </div>
+                <div class="FooterRight">@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger rounded" })</div>
+                <div class="clearfix"></div>
             </div>
+            <br />
         </div>
     }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
 }
 
 @section Scripts {

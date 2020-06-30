@@ -1,11 +1,23 @@
 ﻿@model IEnumerable<Reservation.DATA.EF.OwnerAsset>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Account";
 }
 
+<div class="hero-wrap" style="background-image: url('/Content/images/bg_3.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text d-flex align-itemd-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+                <div class="text">
+                    <h1 class="mb-4 bread">@ViewBag.Title</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="tables">
-    <h2>Customers</h2>
     <br />
     <div class="row">
         <div class="col-md-12">
@@ -37,8 +49,8 @@
                     @Html.DisplayNameFor(model => model.SpecialNotes)
                 </th>
                 @*<th>
-                    @Html.DisplayNameFor(model => model.IsActive)
-                </th>*@
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.DateAdded)
                 </th>
@@ -66,8 +78,8 @@
                         @Html.DisplayFor(modelItem => item.SpecialNotes)
                     </td>
                     @*<td>
-                        @Html.DisplayFor(modelItem => item.IsActive)
-                    </td>*@
+                            @Html.DisplayFor(modelItem => item.IsActive)
+                        </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.DateAdded)
                     </td>
@@ -89,6 +101,7 @@
         </tbody>
     </table>
 </div>
+<br />
 @section scripts{
     <script>
         $(document).ready(function () {

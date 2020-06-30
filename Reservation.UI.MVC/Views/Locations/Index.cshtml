@@ -1,11 +1,23 @@
 ﻿@model IEnumerable<Reservation.DATA.EF.Location>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Locations";
 }
 
+<div class="hero-wrap" style="background-image: url('/Content/images/bg_3.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text d-flex align-itemd-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+                <div class="text">
+                    <h1 class="mb-4 bread">@ViewBag.Title</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="tables">
-    <h2>Locations</h2>
     <br />
     <div class="row">
         <div class="col-md-12">
@@ -77,6 +89,7 @@
         </tbody>
     </table>
 </div>
+<br />
 @section scripts{
     <script>
         $(document).ready(function () {

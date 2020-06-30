@@ -1,41 +1,40 @@
 ﻿@model Reservation.UI.MVC.Models.RoleViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create New Role";
 }
 
-<h2>Create.</h2>
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div class="cdeContainer">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <br />
+        <h2>@ViewBag.Title</h2>
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
 
-    <div class="form-horizontal">
-        <h4>Role.</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Name)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group">
+                <div class="clearfix"></div>
+                <div class="FooterLeft">
+                    <input type="submit" value="Create" class="btn btn-primary rounded" />
+                </div>
+                <div class="FooterRight">@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger rounded" })</div>
+                <div class="clearfix"></div>
             </div>
+            <br />
         </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    }
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
