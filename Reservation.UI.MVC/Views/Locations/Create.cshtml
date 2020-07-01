@@ -8,7 +8,7 @@
 {
     @Html.AntiForgeryToken()
     <div class="cdeContainer">
-        <h2>@ViewBag.Title</h2>
+        <br />  
         <div class="form-horizontal">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -67,6 +67,7 @@
                 <div class="FooterRight">@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger rounded" })</div>
                 <div class="clearfix"></div>
             </div>
+            <br />
         </div>
     </div>
 }

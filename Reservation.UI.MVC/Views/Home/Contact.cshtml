@@ -4,18 +4,7 @@
     ViewBag.Title = "Contact Us";
 }
 
-<div class="hero-wrap" style="background-image: url('/Content/images/bg_3.jpg');">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text d-flex align-itemd-center justify-content-center">
-            <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
-                <div class="text">
-                    <h1 class="mb-4 bread">@ViewBag.Title</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -25,7 +14,7 @@
             <div class="col-sm-offset-3 col-sm-8">
                 <div class="col-sm-6">
                     <div class="form-horizontal">
-                        <hr />
+                        <br />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
                             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -64,6 +53,7 @@
                                 <input type="submit" value="Send Email" class="btn btn-primary rounded" />
                             </div>
                         </div>
+                        <br />
                     </div>
                 </div>
             </div>
