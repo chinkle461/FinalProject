@@ -1,7 +1,7 @@
 ﻿@model Reservation.DATA.EF.OwnerAsset
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Customer";
 }
 
 <div class="cdeContainer">
@@ -22,7 +22,8 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.AssetPhoto)
+                @*@Html.DisplayFor(model => model.AssetPhoto)*@
+                <p><img src="~/Content/images/@Model.AssetPhoto" alt="Photo of @Model.AssetName" /></p>
             </dd>
 
             <dt>
@@ -58,11 +59,11 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+                @*@Html.DisplayNameFor(model => model.UserDetail.FirstName)*@Name
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.UserDetail.FirstName)
+                @Html.DisplayFor(model => model.UserDetail.FullName)
             </dd>
 
         </dl>

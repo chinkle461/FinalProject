@@ -27,6 +27,11 @@ td img {
     max-width: 6em !important;
 }
 
+dd img {
+    max-height: 8em;
+    max-width: 6em !important;
+}
+
 /* Contact Form Styling */
 .form-group {
     align-content: center;
@@ -169,3 +174,13 @@ a {
     }
 }
 
+.ftco-section {
+    padding: 3em 0;
+    position: relative;
+}
+
+@media (max-width: 767.98px) {
+    .ftco-section {
+        padding: 3em 0;
+    }
+}

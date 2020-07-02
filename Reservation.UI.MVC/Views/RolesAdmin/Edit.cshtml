@@ -9,7 +9,6 @@
     @Html.AntiForgeryToken()
     <div class="cdeContainer">
         <br />
-        <h2>@ViewBag.Title</h2>
         <div class="form-horizontal">
             @Html.ValidationSummary(true)
             @Html.HiddenFor(model => model.Id)
