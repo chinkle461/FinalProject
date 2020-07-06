@@ -16,6 +16,36 @@
     margin-left: 28em;
 }
 
+@media screen and (max-width: 1400px) {
+    #loginForm {
+        margin-left: 20em;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    #loginForm {
+        margin-left: 15em;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #loginForm {
+        margin-left: 10em;  
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #loginForm {
+        margin-left: 5em;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    #loginForm {
+        margin-left: 2em;
+    }
+}
+
 /* Tables Styling */
 div.tables {
     margin-left: 2em;
@@ -189,4 +219,11 @@ a {
 /*Rooms page adjustments */
 a.img {
     cursor: pointer;
+}
+
+/* youtube embedded */
+@media screen and (max-width: 545px){
+    .modal-body iframe{
+        width:420px;
+    }
 }

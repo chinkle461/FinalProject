@@ -57,7 +57,7 @@ namespace Reservation.UI.MVC.Controllers
         [Authorize(Roles = "Admin, User")]
         public ActionResult Create()
         {
-            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FirstName");
+            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FullName");
             return View();
         }
 
@@ -100,15 +100,17 @@ namespace Reservation.UI.MVC.Controllers
                 #endregion
 
                 ownerAsset.DateAdded = @DateTime.Now;//added for it automatically update the time
-
-                ownerAsset.OwnerId = User.Identity.GetUserId();//add this to add assets to their userid
+                if (!User.IsInRole("Admin"))
+                {
+                    ownerAsset.OwnerId = User.Identity.GetUserId();//add this to add assets to their userid
+                }                
 
                 db.OwnerAssets.Add(ownerAsset);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FirstName", ownerAsset.OwnerId);
+            ViewBag.OwnerId = new SelectList(db.UserDetails, "UserId", "FullName", ownerAsset.OwnerId);
             return View(ownerAsset);
         }
 
@@ -153,6 +155,10 @@ namespace Reservation.UI.MVC.Controllers
 
                         image.SaveAs(Server.MapPath("~/Content/images/" + imageName));
 
+                        if (ownerAsset.AssetPhoto != null && ownerAsset.AssetPhoto != "noImage.png")
+                        {
+                            System.IO.File.Delete(Server.MapPath("~/Content/images/" + ownerAsset.AssetPhoto).ToString());
+                        }
                         ownerAsset.AssetPhoto = imageName;
                     }
                 }
