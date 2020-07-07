@@ -28,8 +28,11 @@
                 <th>
                     @Html.DisplayNameFor(model => model.OwnerAsset.AssetName)
                 </th>
-                <th></th>
-            </tr>
+                @if (User.IsInRole("User") || User.IsInRole("Admin"))
+                {
+                    <th></th>
+                }
+                </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
@@ -57,7 +60,6 @@
                             }
                         </td>
                     }
-
                 </tr>
             }
         </tbody>
@@ -67,7 +69,7 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            $('.table').DataTable({ responsive: true }); //the default is #myTable
+            $('.table').DataTable({ responsive: true, "order": [] }); //the default is #myTable
         });
     </script>
 }

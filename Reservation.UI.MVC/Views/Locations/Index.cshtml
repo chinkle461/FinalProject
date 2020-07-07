@@ -39,8 +39,11 @@
                     @*@Html.DisplayNameFor(model => model.ReservationLimit)*@
                     Reservation Limit
                 </th>
-                <th></th>
-            </tr>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th></th>
+                }
+                </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
@@ -81,7 +84,7 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            $('.table').DataTable({ responsive: true }); //the default is #myTable
+            $('.table').DataTable({ responsive: true, "order": [] }); //the default is #myTable
         });
     </script>
 }

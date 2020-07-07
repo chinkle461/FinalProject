@@ -30,7 +30,7 @@ namespace Reservation.UI.MVC.Controllers
             else
             {
                 var reservations = db.Reservations.Include(r => r.Location).Include(r => r.OwnerAsset);
-                return View(reservations.ToList());
+                return View(reservations.OrderBy(x => x.ReservationDate).ToList());
             }
             #endregion
 

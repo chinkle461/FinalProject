@@ -1,9 +1,8 @@
 ﻿@model IEnumerable<Reservation.DATA.EF.OwnerAsset>
 
 @{
-    ViewBag.Title = "Account";
+    ViewBag.Title = "Owner Assets";
 }
-
 
 <div class="tables">
     <br />
@@ -39,9 +38,9 @@
                 @*<th>
                         @Html.DisplayNameFor(model => model.IsActive)
                     </th>*@
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.DateAdded)
-                </th>
+                </th>*@
                 <th></th>
             </tr>
         </thead>
@@ -68,9 +67,9 @@
                     @*<td>
                             @Html.DisplayFor(modelItem => item.IsActive)
                         </td>*@
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.DateAdded)
-                    </td>
+                    </td>*@
                     @if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("Employee"))
                     {
                         <td>
@@ -83,7 +82,6 @@
                             }
                         </td>
                     }
-
                 </tr>
             }
         </tbody>
@@ -93,7 +91,7 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            $('.table').DataTable({responsive: true}); //the default is #myTable
+            $('.table').DataTable({ responsive: true, "order": [] }); //the default is #myTable
         });
     </script>
 }

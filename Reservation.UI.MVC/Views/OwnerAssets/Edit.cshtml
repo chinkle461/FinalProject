@@ -49,15 +49,7 @@
                         @Html.ValidationMessageFor(model => model.Relationship, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.SpecialNotes, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.SpecialNotes, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.SpecialNotes, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
+                @*<div class="form-group">
                     @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <div class="checkbox">
@@ -65,15 +57,21 @@
                             @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
-
+                </div>*@
                 <div class="form-group">
-                    @Html.LabelFor(model => model.DateAdded, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.SpecialNotes, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.DateAdded, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DateAdded, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.SpecialNotes, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SpecialNotes, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                @*<div class="form-group">
+            @Html.LabelFor(model => model.DateAdded, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateAdded, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateAdded, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
 
                 <div class="form-group">
                     <div class="clearfix"></div>
@@ -103,25 +101,28 @@ else if (User.IsInRole("Employee"))
         @Html.HiddenFor(model => model.IsActive)
         @Html.HiddenFor(model => model.DateAdded)
         @Html.HiddenFor(model => model.Relationship)
-        <div class="form-horizontal">
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.SpecialNotes, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.SpecialNotes, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SpecialNotes, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="clearfix"></div>
-                <div class="FooterLeft">
-                    <input type="submit" value="Save" class="btn btn-primary rounded" />
-                </div>
-                <div class="FooterRight">@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger rounded" })</div>
-                <div class="clearfix"></div>
-            </div>
+        <div class="cdeContainer">
             <br />
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SpecialNotes, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SpecialNotes, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SpecialNotes, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="clearfix"></div>
+                    <div class="FooterLeft">
+                        <input type="submit" value="Save" class="btn btn-primary rounded" />
+                    </div>
+                    <div class="FooterRight">@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger rounded" })</div>
+                    <div class="clearfix"></div>
+                </div>
+                <br />
+            </div>
         </div>
     }
 }

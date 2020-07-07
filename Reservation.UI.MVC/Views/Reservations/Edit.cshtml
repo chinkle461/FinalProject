@@ -54,7 +54,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(function () {
-            $("#ReservationDate").datepicker();
+            $("#ReservationDate").datepicker({ minDate: 0 });
         });
     </script>
 }
